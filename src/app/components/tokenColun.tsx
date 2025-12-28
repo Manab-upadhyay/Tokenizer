@@ -59,7 +59,7 @@ export default function TokenColumn({
         </div>
 
         {/* List */}
-        <div className="flex-1 overflow-y-auto p-3 flex flex-col gap-2 dark-scrollbar">
+        <div className="flex-1 overflow-y-auto p-3 flex flex-col  dark-scrollbar">
           {isLoading ? (
             <TokenColumnSkeleton />
           ) : (

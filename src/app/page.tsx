@@ -19,7 +19,7 @@ export default function Home() {
     <div className="min-h-screen bg-black text-white p-6">
       <Navbar />
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 h-[calc(100vh-3rem)]">
+        <div className="grid grid-cols-1 lg:grid-cols-3  h-[calc(100vh-3rem)]">
           <TokenColumn
             title="New Pairs"
             tokens={tokens}
