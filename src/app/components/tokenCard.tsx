@@ -46,13 +46,22 @@ const TokenCard = ({ token, openModal }: TokenCardProps) => {
   return (
     <div
       className="
-        bg-black rounded-lg p-3 w-full max-w-xl border border-white/5
-        hover:border-white/20 hover:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.06)]
-        transition-all duration-200 text-white
-        sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl
-        flex flex-col gap-4
-        
-      "
+    bg-black rounded-lg p-3 w-full max-w-xl
+    border border-white/5
+    text-white
+    flex flex-col gap-4
+
+    transition-all duration-200 ease-out
+    hover:border-white/20
+    hover:bg-white/[0.015]
+    hover:-translate-y-[1px]
+    hover:shadow-[0_4px_12px_rgba(0,0,0,0.6),inset_0_0_0_1px_rgba(255,255,255,0.06)]
+
+    active:translate-y-0
+    active:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)]
+
+    sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl
+  "
       onClick={openModal}
     >
       {/* Top Row */}
