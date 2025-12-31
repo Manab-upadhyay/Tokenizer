@@ -18,7 +18,6 @@ export default function TokenColumn({
   tokens,
   isLoading,
 }: TokenColumnProps) {
-  console.log("loading", isLoading);
   const [query, setQuery] = useState("");
   const [selectedToken, setselectedToken] = useState(null);
 
@@ -46,8 +45,6 @@ export default function TokenColumn({
       return diff !== 0 ? diff : a.address.localeCompare(b.address);
     });
   }, [tokens, query, title]);
-
-  console.log("filteredAndSortedTokens", filteredAndSortedTokens);
 
   return (
     <>
