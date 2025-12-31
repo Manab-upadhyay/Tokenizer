@@ -43,7 +43,6 @@ const TokenCard = ({ token, openModal }: TokenCardProps) => {
   const truncateAddress = (addr: string) =>
     `${addr.slice(0, 4)}...${addr.slice(-4)}`;
 
-  // 🔥 Flash indicators
   const volumeFlash = useFlashChange(token.volume);
   const txFlash = useFlashChange(token.txCount);
 
@@ -60,20 +59,60 @@ const TokenCard = ({ token, openModal }: TokenCardProps) => {
         hover:bg-white/[0.015]
         hover:-translate-y-[1px]
         hover:shadow-[0_4px_12px_rgba(0,0,0,0.6),inset_0_0_0_1px_rgba(255,255,255,0.06)]
-        active:translate-y-0
-        active:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04)]
       "
     >
       {/* Top Row */}
       <div className="flex flex-wrap items-center justify-between gap-3 w-full">
         {/* Left */}
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          <img
-            src={token.image}
-            alt={token.name}
-            className="w-12 h-12 rounded-lg object-cover shrink-0"
-          />
+          {/* IMAGE */}
+          <div className="relative group shrink-0">
+            <div className="w-12 h-12 rounded-lg overflow-hidden border border-white/10 bg-black">
+              <img
+                src={token.image}
+                alt={token.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
 
+            {/* Tooltip */}
+            <div
+              className="
+                pointer-events-none
+                absolute -top-7 left-1/2 -translate-x-1/2
+                whitespace-nowrap
+                rounded-md bg-black px-2 py-1
+                text-[10px] text-white
+                border border-white/10
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-150
+                z-40
+              "
+            >
+              Preview image
+            </div>
+
+            {/* ✅ Hover Preview BELOW */}
+            <div className="pointer-events-none absolute top-full left-1/2 z-50 hidden group-hover:block -translate-x-1/2 mt-2">
+              <div
+                className="
+                  w-32 h-32 rounded-xl overflow-hidden
+                  border border-white/20 bg-black
+                  shadow-[0_12px_30px_rgba(0,0,0,0.8)]
+                  transform transition-all duration-200
+                  scale-95 group-hover:scale-100
+                "
+              >
+                <img
+                  src={token.image}
+                  alt={token.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Name & meta */}
           <div className="flex flex-col gap-1 min-w-0">
             <div className="flex items-center gap-2 min-w-0">
               <span className="font-semibold truncate">{token.name}</span>
@@ -113,7 +152,6 @@ const TokenCard = ({ token, openModal }: TokenCardProps) => {
             >
               V {token.volume}
             </span>
-
             <span className="text-primary">MC {token.marketCap}</span>
           </div>
 
@@ -148,10 +186,30 @@ const TokenCard = ({ token, openModal }: TokenCardProps) => {
           <Indicator value={`${token.sellPercent}%`} type="negative" />
         </div>
 
+        {/* ✅ Address with tooltip */}
         <div className="flex items-center gap-3">
-          <span className="text-xs text-muted-foreground truncate max-w-[80px]">
-            {truncateAddress(token.address)}
-          </span>
+          <div className="relative group">
+            <span className="text-xs text-muted-foreground truncate max-w-[80px] cursor-default">
+              {truncateAddress(token.address)}
+            </span>
+
+            <div
+              className="
+                pointer-events-none
+                absolute bottom-full left-1/2 -translate-x-1/2 mb-1
+                whitespace-nowrap
+                rounded-md bg-black px-2 py-1
+                text-[10px] text-white
+                border border-white/10
+                opacity-0 group-hover:opacity-100
+                transition-opacity duration-150
+                z-40
+              "
+            >
+              {token.address}
+            </div>
+          </div>
+
           <button className="bg-blue-500/90 hover:bg-blue-500 text-white text-xs px-3 py-1.5 rounded-full">
             {token.solBalance} SOL
           </button>
